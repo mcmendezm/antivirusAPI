@@ -6,26 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InstitucionBootcampService {
 
     @Autowired
-    private InstitucionBootcampRepository repository;
+    private InstitucionBootcampRepository institucionBootcampRepository;
 
-    public List<InstitucionBootcamp> getAll() {
-        return repository.findAll();
+    public List<InstitucionBootcamp> findAll() {
+        return institucionBootcampRepository.findAll();
     }
 
-    public InstitucionBootcamp getById(Long id) {
-        return repository.findById(id).orElse(null);
+    public Optional<InstitucionBootcamp> findById(Long id) {
+        return institucionBootcampRepository.findById(id);
     }
 
     public InstitucionBootcamp save(InstitucionBootcamp institucionBootcamp) {
-        return repository.save(institucionBootcamp);
+        return institucionBootcampRepository.save(institucionBootcamp);
     }
 
     public void deleteById(Long id) {
-        repository.deleteById(id);
+        institucionBootcampRepository.deleteById(id);
     }
 }

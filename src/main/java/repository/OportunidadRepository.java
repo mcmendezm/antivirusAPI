@@ -13,4 +13,7 @@ public interface OportunidadRepository extends JpaRepository<Oportunidad, Long> 
 
     // Método adicional para buscar oportunidades por categoría
     List<Oportunidad> findByCategoriaId(Long categoriaId);
+
+    // Método adicional para buscar oportunidades por institución
+    List<Oportunidad> findByInstitucionId(Long institucionId);
 }

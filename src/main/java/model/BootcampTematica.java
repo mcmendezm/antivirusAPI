@@ -3,18 +3,19 @@ package com.example.antivirusAPI.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "bootcamps_tematicas")
+@Table(name = "bootcamp_tematica")
 public class BootcampTematica {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_bootcamps", nullable = false)
+    @JoinColumn(name = "id_bootcamp", nullable = false)
     private Bootcamp bootcamp;
 
     @ManyToOne
-    @JoinColumn(name = "id_tematicas", nullable = false)
+    @JoinColumn(name = "id_tematica", nullable = false)
     private Tematica tematica;
 
     // Getters y Setters

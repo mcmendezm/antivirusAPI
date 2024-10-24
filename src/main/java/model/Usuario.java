@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,12 +17,13 @@ public class Usuario {
     private String correo;
 
     @Column(nullable = false)
-    private String contrasena;
+    private String contraseña;
 
     @Column(nullable = false)
     private String rol;
 
     // Getters y Setters
+
     public Long getId() {
         return id;
     }
@@ -46,12 +48,12 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
     public String getRol() {

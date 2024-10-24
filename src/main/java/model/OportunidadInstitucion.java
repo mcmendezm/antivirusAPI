@@ -3,20 +3,20 @@ package com.example.antivirusAPI.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "usuario_oportunidad")
-public class UsuarioOportunidad {
+@Table(name = "oportunidad_institucion")
+public class OportunidadInstitucion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuario usuario;
-
-    @ManyToOne
     @JoinColumn(name = "id_oportunidad", nullable = false)
     private Oportunidad oportunidad;
+
+    @ManyToOne
+    @JoinColumn(name = "id_institucion", nullable = false)
+    private Institucion institucion;
 
     // Getters y Setters
 
@@ -28,19 +28,19 @@ public class UsuarioOportunidad {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public Oportunidad getOportunidad() {
         return oportunidad;
     }
 
     public void setOportunidad(Oportunidad oportunidad) {
         this.oportunidad = oportunidad;
+    }
+
+    public Institucion getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(Institucion institucion) {
+        this.institucion = institucion;
     }
 }

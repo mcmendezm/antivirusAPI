@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "categorias")
 public class Categoria {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -12,9 +13,11 @@ public class Categoria {
     @Column(nullable = false)
     private String nombre;
 
+    @Column(length = 1000)
     private String descripcion;
 
     // Getters y Setters
+
     public Long getId() {
         return id;
     }

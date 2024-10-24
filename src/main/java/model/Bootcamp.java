@@ -16,16 +16,15 @@ public class Bootcamp {
     @Column(length = 1000)
     private String informacion;
 
+    @Column(length = 500)
+    private String costos;
+
+    @Column(nullable = false)
+    private String nombre;
+
     @ManyToOne
     @JoinColumn(name = "id_institucion", nullable = true)
     private Institucion institucion;
-
-    @ManyToOne
-    @JoinColumn(name = "id_tematicas", nullable = true)
-    private Tematica tematica;
-
-    @Column(nullable = false)
-    private double costos;
 
     // Getters y Setters
 
@@ -53,27 +52,27 @@ public class Bootcamp {
         this.informacion = informacion;
     }
 
+    public String getCostos() {
+        return costos;
+    }
+
+    public void setCostos(String costos) {
+        this.costos = costos;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public Institucion getInstitucion() {
         return institucion;
     }
 
     public void setInstitucion(Institucion institucion) {
         this.institucion = institucion;
-    }
-
-    public Tematica getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(Tematica tematica) {
-        this.tematica = tematica;
-    }
-
-    public double getCostos() {
-        return costos;
-    }
-
-    public void setCostos(double costos) {
-        this.costos = costos;
     }
 }

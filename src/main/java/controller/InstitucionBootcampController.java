@@ -13,41 +13,43 @@ import java.util.List;
 public class InstitucionBootcampController {
 
     @Autowired
-    private InstitucionBootcampService service;
+    private InstitucionBootcampService institucionBootcampService;
 
     @GetMapping
-    public List<InstitucionBootcamp> getAll() {
-        return service.getAll();
+    public List<InstitucionBootcamp> getAllInstitucionBootcamps() {
+        return institucionBootcampService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<InstitucionBootcamp> getById(@PathVariable Long id) {
-        InstitucionBootcamp ib = service.getById(id);
-        return ib != null ? ResponseEntity.ok(ib) : ResponseEntity.notFound().build();
+    public ResponseEntity<InstitucionBootcamp> getInstitucionBootcampById(@PathVariable Long id) {
+        return institucionBootcampService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public InstitucionBootcamp create(@RequestBody InstitucionBootcamp ib) {
-        return service.save(ib);
+    public InstitucionBootcamp createInstitucionBootcamp(@RequestBody InstitucionBootcamp institucionBootcamp) {
+        return institucionBootcampService.save(institucionBootcamp);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<InstitucionBootcamp> update(@PathVariable Long id, @RequestBody InstitucionBootcamp ib) {
-        if (service.getById(id) != null) {
-            ib.setId(id);
-            return ResponseEntity.ok(service.save(ib));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<InstitucionBootcamp> updateInstitucionBootcamp(@PathVariable Long id, @RequestBody InstitucionBootcamp institucionBootcampDetails) {
+        return institucionBootcampService.findById(id)
+                .map(institucionBootcamp -> {
+                    institucionBootcamp.setInstitucion(institucionBootcampDetails.getInstitucion());
+                    institucionBootcamp.setBootcamp(institucionBootcampDetails.getBootcamp());
+                    return ResponseEntity.ok(institucionBootcampService.save(institucionBootcamp));
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        if (service.getById(id) != null) {
-            service.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Void> deleteInstitucionBootcamp(@PathVariable Long id) {
+        return institucionBootcampService.findById(id)
+                .map(institucionBootcamp -> {
+                    institucionBootcampService.deleteById(id);
+                    return ResponseEntity.noContent().<Void>build();
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 }

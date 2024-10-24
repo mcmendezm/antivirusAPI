@@ -58,9 +58,8 @@ public class OportunidadController {
         return oportunidadService.findById(id)
                 .map(oportunidad -> {
                     oportunidadService.deleteById(id);
-                    return ResponseEntity.noContent().<Void>build(); // Corrección aquí
+                    return ResponseEntity.noContent().<Void>build();
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
-
 }

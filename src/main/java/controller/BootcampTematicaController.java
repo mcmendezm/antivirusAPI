@@ -13,41 +13,43 @@ import java.util.List;
 public class BootcampTematicaController {
 
     @Autowired
-    private BootcampTematicaService service;
+    private BootcampTematicaService bootcampTematicaService;
 
     @GetMapping
-    public List<BootcampTematica> getAll() {
-        return service.getAll();
+    public List<BootcampTematica> getAllBootcampTematicas() {
+        return bootcampTematicaService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BootcampTematica> getById(@PathVariable Long id) {
-        BootcampTematica bt = service.getById(id);
-        return bt != null ? ResponseEntity.ok(bt) : ResponseEntity.notFound().build();
+    public ResponseEntity<BootcampTematica> getBootcampTematicaById(@PathVariable Long id) {
+        return bootcampTematicaService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public BootcampTematica create(@RequestBody BootcampTematica bt) {
-        return service.save(bt);
+    public BootcampTematica createBootcampTematica(@RequestBody BootcampTematica bootcampTematica) {
+        return bootcampTematicaService.save(bootcampTematica);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BootcampTematica> update(@PathVariable Long id, @RequestBody BootcampTematica bt) {
-        if (service.getById(id) != null) {
-            bt.setId(id);
-            return ResponseEntity.ok(service.save(bt));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<BootcampTematica> updateBootcampTematica(@PathVariable Long id, @RequestBody BootcampTematica bootcampTematicaDetails) {
+        return bootcampTematicaService.findById(id)
+                .map(bootcampTematica -> {
+                    bootcampTematica.setBootcamp(bootcampTematicaDetails.getBootcamp());
+                    bootcampTematica.setTematica(bootcampTematicaDetails.getTematica());
+                    return ResponseEntity.ok(bootcampTematicaService.save(bootcampTematica));
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        if (service.getById(id) != null) {
-            service.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Void> deleteBootcampTematica(@PathVariable Long id) {
+        return bootcampTematicaService.findById(id)
+                .map(bootcampTematica -> {
+                    bootcampTematicaService.deleteById(id);
+                    return ResponseEntity.noContent().<Void>build();
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 }

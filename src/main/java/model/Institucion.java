@@ -13,19 +13,19 @@ public class Institucion {
     @Column(nullable = false)
     private String nombre;
 
-    @Column(length = 500)
+    @Column(length = 1000)
     private String ubicacion;
 
-    @Column(name = "url_generalidades", length = 1000)
+    @Column(length = 1000)
     private String urlGeneralidades;
 
-    @Column(name = "url_oferta_academica", length = 1000)
+    @Column(length = 1000)
     private String urlOfertaAcademica;
 
-    @Column(name = "url_bienestar", length = 1000)
+    @Column(length = 1000)
     private String urlBienestar;
 
-    @Column(name = "url_admision", length = 1000)
+    @Column(length = 1000)
     private String urlAdmision;
 
     // Getters y Setters

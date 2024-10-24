@@ -8,9 +8,9 @@ import java.util.List;
 
 @Repository
 public interface BootcampRepository extends JpaRepository<Bootcamp, Long> {
+    // Método adicional para buscar bootcamps por nombre
+    List<Bootcamp> findByNombre(String nombre);
+
     // Método adicional para buscar bootcamps por institución
     List<Bootcamp> findByInstitucionId(Long institucionId);
-
-    // Método adicional para buscar bootcamps por temática
-    List<Bootcamp> findByTematicaId(Long tematicaId);
 }

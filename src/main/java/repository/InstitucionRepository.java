@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface InstitucionRepository extends JpaRepository<Institucion, Long> {
-    // Método adicional para buscar instituciones que contengan un nombre específico
-    List<Institucion> findByNombreContaining(String nombre);
+    // Método adicional para buscar instituciones por nombre
+    List<Institucion> findByNombreContainingIgnoreCase(String nombre);
 }

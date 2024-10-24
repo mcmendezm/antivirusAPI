@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "tematicas")
 public class Tematica {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,6 +14,7 @@ public class Tematica {
     private String nombre;
 
     // Getters y Setters
+
     public Long getId() {
         return id;
     }

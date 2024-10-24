@@ -38,9 +38,9 @@ public class BootcampController {
                 .map(bootcamp -> {
                     bootcamp.setDescripcion(bootcampDetails.getDescripcion());
                     bootcamp.setInformacion(bootcampDetails.getInformacion());
-                    bootcamp.setInstitucion(bootcampDetails.getInstitucion());
-                    bootcamp.setTematica(bootcampDetails.getTematica());
                     bootcamp.setCostos(bootcampDetails.getCostos());
+                    bootcamp.setNombre(bootcampDetails.getNombre());
+                    bootcamp.setInstitucion(bootcampDetails.getInstitucion());
                     return ResponseEntity.ok(bootcampService.save(bootcamp));
                 })
                 .orElse(ResponseEntity.notFound().build());

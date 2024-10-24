@@ -38,7 +38,7 @@ public class UsuarioController {
                 .map(usuario -> {
                     usuario.setNombre(usuarioDetails.getNombre());
                     usuario.setCorreo(usuarioDetails.getCorreo());
-                    usuario.setContrasena(usuarioDetails.getContrasena());
+                    usuario.setContraseña(usuarioDetails.getContraseña());
                     usuario.setRol(usuarioDetails.getRol());
                     return ResponseEntity.ok(usuarioService.save(usuario));
                 })
@@ -54,5 +54,4 @@ public class UsuarioController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
-
 }

@@ -6,26 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BootcampTematicaService {
 
     @Autowired
-    private BootcampTematicaRepository repository;
+    private BootcampTematicaRepository bootcampTematicaRepository;
 
-    public List<BootcampTematica> getAll() {
-        return repository.findAll();
+    public List<BootcampTematica> findAll() {
+        return bootcampTematicaRepository.findAll();
     }
 
-    public BootcampTematica getById(Long id) {
-        return repository.findById(id).orElse(null);
+    public Optional<BootcampTematica> findById(Long id) {
+        return bootcampTematicaRepository.findById(id);
     }
 
     public BootcampTematica save(BootcampTematica bootcampTematica) {
-        return repository.save(bootcampTematica);
+        return bootcampTematicaRepository.save(bootcampTematica);
     }
 
     public void deleteById(Long id) {
-        repository.deleteById(id);
+        bootcampTematicaRepository.deleteById(id);
     }
 }
