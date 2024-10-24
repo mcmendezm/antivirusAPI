@@ -40,6 +40,30 @@ Este proyecto es una API desarrollada con **Spring Boot**, **Java**, y **JPA**, 
     spring.jpa.hibernate.ddl-auto=update
     ```
 
+## Estructura del Proyecto
+
+La estructura del proyecto es la siguiente:
+
+```
+/ruta/de/tu/proyecto/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/com/ejemplo/antivirusAPI/
+│   │   │   ├── controller/  # Controladores de la API
+│   │   │   ├── model/       # Modelos de entidades JPA
+│   │   │   ├── repository/  # Repositorios JPA
+│   │   │   └── service/     # Servicios que implementan la lógica de negocio
+│   │   └── resources/
+│   │       ├── application.properties  # Configuración de la base de datos y otros parámetros
+│   └── test/  # Pruebas unitarias
+│
+├── pom.xml  # Archivo de configuración de Maven
+├── README.md  # Instrucciones del proyecto (este archivo)
+├── script.sql  # Script para crear y poblar la base de datos
+└── .gitignore  # Archivos y carpetas a ignorar en Git
+```
+
 ## Configuración de la Base de Datos
 
 1. En el archivo `script.sql`, se encuentran todas las sentencias SQL para crear y poblar las tablas necesarias en la base de datos `antivirus`.
@@ -90,7 +114,9 @@ Las principales rutas de la API son las siguientes:
 ## Documentación de la API
 
 La documentación de la API se genera automáticamente con **SpringDoc OpenAPI**. Para acceder a la interfaz de Swagger, abre tu navegador y dirígete a:
-```http://localhost:8080/swagger-ui/index.html```
+```
+http://localhost:8080/swagger-ui/index.html
+```
 
 ## Script SQL
 
