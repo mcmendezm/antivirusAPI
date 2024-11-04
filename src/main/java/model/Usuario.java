@@ -1,4 +1,4 @@
-package com.example.antivirusAPI.model;
+package model;
 
 import jakarta.persistence.*;
 
