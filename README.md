@@ -28,6 +28,22 @@ Este proyecto es una API desarrollada con **Spring Boot**, **Java**, y **JPA**, 
     ```
 
 2. Asegúrate de tener configurada la base de datos MySQL y crea una base de datos llamada `antivirus`:
+    - Pull with docker the lastest mysql image using the command:
+    ```bash
+      docker pull mysql
+    ```
+    - Run the mysql image with command:
+    ```bash
+   docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=<your-password-here> mysql
+    ```
+   - Go to mysql bash and access with yout password.
+    ```bash
+   docker exec -it mysql bash
+   ```
+    ```bash
+   mysql -u root -p
+   ```
+   
     ```sql
     CREATE DATABASE antivirus;
     ```

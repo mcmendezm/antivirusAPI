@@ -4,6 +4,7 @@ import com.example.antivirusAPI.model.Usuario;
 import com.example.antivirusAPI.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;  // Para codificar la contraseña
 
     @GetMapping
     public List<Usuario> getAllUsuarios() {
@@ -27,8 +31,10 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping(value = "/register", consumes = "application/json")
     public Usuario createUsuario(@RequestBody Usuario usuario) {
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        System.out.println("aqui");
         return usuarioService.save(usuario);
     }
 
@@ -38,8 +44,10 @@ public class UsuarioController {
                 .map(usuario -> {
                     usuario.setNombre(usuarioDetails.getNombre());
                     usuario.setCorreo(usuarioDetails.getCorreo());
-                    usuario.setContraseña(usuarioDetails.getContraseña());
+                    usuario.setPassword(usuarioDetails.getPassword());
                     usuario.setRol(usuarioDetails.getRol());
+                    usuario.setUsername(usuarioDetails.getUsername());
+                    usuario.setFechaNacimiento(usuarioDetails.getFechaNacimiento());
                     return ResponseEntity.ok(usuarioService.save(usuario));
                 })
                 .orElse(ResponseEntity.notFound().build());
