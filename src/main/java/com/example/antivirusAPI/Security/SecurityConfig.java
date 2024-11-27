@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import org.springframework.web.cors.CorsConfiguration;
-import java.util.List;  // Importación de List
+import java.util.List;
 
 import com.example.antivirusAPI.Jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> {
                     registry
-                            .requestMatchers("/auth/**","/swagger-ui/**","/api/usuarios/**", "/v3/api-docs/**").permitAll()//
+                            .requestMatchers("/auth/**","/swagger-ui/**", "/v3/api-docs/**").permitAll()//
                             .anyRequest().authenticated();
                 })
                 .sessionManagement(sessionManager->
